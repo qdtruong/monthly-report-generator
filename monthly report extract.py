@@ -69,25 +69,27 @@ def extract_data_from_word(file_path):
 # Example DataFrame with file names
 folder_path = r"C:\Users\quang.truong\OneDrive - HHS Office of the Secretary\Desktop\New folder"
 file_df = pd.DataFrame({
-    "File Name": ["Monthly Report_BritnieBarrett.doc", "2-28-25 Monthly Report.doc", "25-02-monthly-report-dsl.docx"]
+    "Filename": ["Monthly Report_BritnieBarrett.doc", "2-28-25 Monthly Report.doc", "25-02-monthly-report-dsl.docx"]
 })
 
-
+def combined_results(folder_path,file_df):
 # Process all files and combine results
-all_data = pd.DataFrame()
-
-for file_name in file_df["File Name"]:
-    file_path = os.path.join(folder_path, file_name)
+    all_data = pd.DataFrame()
     
-    if os.path.exists(file_path):  # Ensure the file exists before processing
-        df = extract_data_from_word(file_path)
-        all_data = pd.concat([all_data, df], ignore_index=True)
-    else:
-        print(f"Skipping: {file_name} (File not found)")
+    for file_name in file_df["Filename"]:
+        file_path = os.path.join(folder_path, file_name)
+        
+        if os.path.exists(file_path):  # Ensure the file exists before processing
+            df = extract_data_from_word(file_path)
+            all_data = pd.concat([all_data, df], ignore_index=True)
+        else:
+            print(f"Skipping: {file_name} (File not found)")
+
+    return all_data
 
 # Save final combined output
 #output_path = "/mnt/data/combined_extracted_report.xlsx"
 #all_data.to_excel(output_path, index=False)
 
 #print(f"All data successfully extracted and saved to {output_path}")
-
+final_output = combined_results(folder_path,file_df)
