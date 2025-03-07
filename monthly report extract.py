@@ -9,6 +9,7 @@ import win32com.client
 import pandas as pd
 from datetime import datetime
 import os
+import open_directory
 
 def extract_data_from_word(file_path):
     """Extracts data from a Word document table and returns a DataFrame."""
@@ -67,10 +68,12 @@ def extract_data_from_word(file_path):
     return pd.DataFrame(data, columns=["Date", "Staff", "Detail", "Category", "Source File"])
 
 # Example DataFrame with file names
-folder_path = r"C:\Users\quang.truong\OneDrive - HHS Office of the Secretary\Desktop\New folder"
-file_df = pd.DataFrame({
-    "Filename": ["Monthly Report_BritnieBarrett.doc", "2-28-25 Monthly Report.doc", "25-02-monthly-report-dsl.docx"]
-})
+#folder_path = r"C:\Users\quang.truong\OneDrive - HHS Office of the Secretary\Desktop\New folder"
+#file_df = pd.DataFrame({
+#    "Filename": ["Monthly Report_BritnieBarrett.doc", "2-28-25 Monthly Report.doc", "25-02-monthly-report-dsl.docx"]
+#})
+folder_path = open_directory.select_folder() # Replace `some_function` with the actual function that generates df
+file_df = open_directory.create_dataframe_from_folder(folder_path) 
 
 def combined_results(folder_path,file_df):
 # Process all files and combine results
@@ -92,4 +95,4 @@ def combined_results(folder_path,file_df):
 #all_data.to_excel(output_path, index=False)
 
 #print(f"All data successfully extracted and saved to {output_path}")
-final_output = combined_results(folder_path,file_df)
+#final_output = combined_results(folder_path,file_df)
