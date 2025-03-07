@@ -8,8 +8,11 @@ Created on Wed Mar  5 10:25:39 2025
 import pandas as pd
 from docx import Document
 from docx.shared import Pt
+import open_directory
 
-def report_output():
+folder_path = open_directory.select_folder()
+
+def report_output(result, folder_path):
     #prep dataframe
     result = result[result.Detail != ""]
     df_activity = result[result.Category == "Activity/Success"]
@@ -81,6 +84,7 @@ def report_output():
                 p.add_run("\n")
     
     # Save the modified document
-    output_path = folder_path + r"\Compiled Report.docx"
-    doc.save(output_path)
-    
+#    output_path = folder_path + r"\Compiled Report.docx"
+#    doc.save(output_path)
+    doc.save("Compiled Report.docx")    
+# report_output(result, doc_path, output_path)
