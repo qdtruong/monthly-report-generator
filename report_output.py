@@ -43,8 +43,9 @@ def report_output(result, folder_path):
     # Load the Template Word document
     #doc_path = r"C:\Users\quang.truong\OneDrive - HHS Office of the Secretary\Desktop\Report Generator\Template.docx"
     
-    doc_path = folder_path + r"\Template.docx"
-    doc = Document(doc_path)
+    #doc_path = folder_path + r"\Template.docx"
+    #doc = Document(doc_path)
+    doc = Document("Template.docx")
     
     # Find the second column in the document (assuming a table exists)
     tables = doc.tables
